@@ -3,6 +3,7 @@ import {
   POST_TODO,
   REMOVE_TODO,
   COMPLETE_TODO,
+  EDIT_TODO,
 } from "../actions/ActionType";
 
 const initialState = {
@@ -14,6 +15,11 @@ function postsReducer(state = initialState, action) {
 
   switch (action.type) {
     case SET_TODOS:
+      console.log(action.data);
+      localState.items = action.data;
+      return localState;
+
+    case EDIT_TODO:
       console.log(action.data);
       localState.items = action.data;
       return localState;

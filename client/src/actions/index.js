@@ -1,5 +1,11 @@
 import axios from "axios";
-import { SET_TODOS, POST_TODO, REMOVE_TODO, COMPLETE_TODO } from "./ActionType";
+import {
+  SET_TODOS,
+  POST_TODO,
+  REMOVE_TODO,
+  COMPLETE_TODO,
+  EDIT_TODO,
+} from "./ActionType";
 var api = "http://localhost:8080";
 export const getTodos = () => {
   return (dispatch) => {
@@ -108,5 +114,34 @@ export const setcompleteTodo = (id) => {
   return {
     type: COMPLETE_TODO,
     data: id,
+  };
+};
+
+export const editTodo = (title, id) => {
+  return (dispatch) => {
+    axios
+      .post(
+        api + "/edit",
+        { id: id, title: title },
+        { headers: { "Content-Type": "application/json" } }
+      )
+      .then(
+        (response) => {
+          if (response.data) {
+            dispatch(seteditTodo(response.data));
+          }
+        },
+        (error) => {
+          console.log("error", error);
+          alert("Data not found!");
+        }
+      );
+  };
+};
+
+export const seteditTodo = (data) => {
+  return {
+    type: EDIT_TODO,
+    data: data,
   };
 };

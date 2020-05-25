@@ -38,6 +38,15 @@ app.post("/remove", (req, res) => {
   res.json(arr);
 });
 
+app.post("/edit", (req, res) => {
+  var id = req.body.id;
+  var title = req.body.title;
+  arr.map((array, index) => {
+    if (array.id == id) arr[index].title = title;
+  });
+  res.json(arr);
+});
+
 app.post("/completed", (req, res) => {
   var id = req.body.id;
   arr.map((array, index) => {
