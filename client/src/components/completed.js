@@ -17,6 +17,8 @@ import {
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import FolderIcon from "@material-ui/icons/Folder";
+import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
+import Tooltip from "@material-ui/core/Tooltip";
 
 class completed extends Component {
   componentDidMount() {
@@ -49,16 +51,18 @@ class completed extends Component {
                   <ListItem>
                     <ListItemAvatar>
                       <Avatar>
-                        <FolderIcon />
+                        <AssignmentTurnedInIcon />
                       </Avatar>
                     </ListItemAvatar>
                     <ListItemText primary={todo.title} />
                     <ListItemSecondaryAction>
-                      <IconButton edge="end" aria-label="delete">
-                        <div onClick={(e) => this.onClickDelete(e, todo.id)}>
-                          <DeleteIcon />
-                        </div>
-                      </IconButton>
+                      <Tooltip title="Delete">
+                        <IconButton edge="end" aria-label="delete">
+                          <div onClick={(e) => this.onClickDelete(e, todo.id)}>
+                            <DeleteIcon />
+                          </div>
+                        </IconButton>
+                      </Tooltip>
                     </ListItemSecondaryAction>
                   </ListItem>
                 </List>
@@ -80,7 +84,7 @@ class completed extends Component {
     return (
       <div>
         <Container>
-          <h1>Todos</h1>
+          <h1>Completed Todos</h1>
           <div>{this.displaytodos()}</div>
 
           <div style={{ marginTop: "100px" }}>

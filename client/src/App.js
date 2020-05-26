@@ -5,7 +5,7 @@ import { Route } from "react-router-dom";
 import AddTodo from "./components/addTodo";
 import Completed from "./components/completed";
 import Landing from "./components/landing";
-
+import Footer from "./components/footer";
 // import history from './history';
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
       <Route exact path="/all" component={Home} />
       <Route exact path="/completed" component={Completed} />
       <Route exact path="/todos/new" component={AddTodo} />
+      <Route path="*" component={Footer} />
     </div>
   );
 }

@@ -21,6 +21,8 @@ import FolderIcon from "@material-ui/icons/Folder";
 import DoneAllIcon from "@material-ui/icons/DoneAll";
 import EditIcon from "@material-ui/icons/Edit";
 import DoneIcon from "@material-ui/icons/Done";
+import AssignmentIcon from "@material-ui/icons/Assignment";
+import Tooltip from "@material-ui/core/Tooltip";
 
 class home extends Component {
   constructor(props) {
@@ -102,11 +104,17 @@ class home extends Component {
                     autoFocus
                     onChange={this.handleChange}
                   ></input>
-                  <IconButton edge="end" aria-label="edit">
-                    <div onClick={(e) => this.handleSubmit(e, todo.id)}>
-                      <DoneIcon />
-                    </div>
-                  </IconButton>
+                  <Tooltip title="Submit">
+                    <IconButton
+                      edge="end"
+                      aria-label="edit"
+                      style={{ marginLeft: "10px" }}
+                    >
+                      <div onClick={(e) => this.handleSubmit(e, todo.id)}>
+                        <DoneIcon />
+                      </div>
+                    </IconButton>
+                  </Tooltip>
                 </div>
               ) : (
                 <div>
@@ -114,42 +122,51 @@ class home extends Component {
                     <ListItem>
                       <ListItemAvatar>
                         <Avatar>
-                          <FolderIcon />
+                          <AssignmentIcon />
                         </Avatar>
                       </ListItemAvatar>
                       <ListItemText primary={todo.title} />
 
                       <ListItemSecondaryAction>
-                        <IconButton edge="end" aria-label="edit">
-                          <div
-                            onClick={(e) =>
-                              this.onClickEdit(e, todo.id, todo.title)
-                            }
-                          >
-                            <EditIcon />
-                          </div>
-                        </IconButton>
+                        <Tooltip title="Edit">
+                          <IconButton edge="end" aria-label="edit">
+                            <div
+                              onClick={(e) =>
+                                this.onClickEdit(e, todo.id, todo.title)
+                              }
+                            >
+                              <EditIcon />
+                            </div>
+                          </IconButton>
+                        </Tooltip>
 
-                        <IconButton
-                          edge="end"
-                          aria-label="complete"
-                          style={{ marginLeft: "15px" }}
-                        >
-                          <div
-                            onClick={(e) => this.onClickCompleted(e, todo.id)}
+                        <Tooltip title="Mark Complete">
+                          <IconButton
+                            edge="end"
+                            aria-label="complete"
+                            style={{ marginLeft: "15px" }}
                           >
-                            <DoneAllIcon />
-                          </div>
-                        </IconButton>
-                        <IconButton
-                          edge="end"
-                          aria-label="delete"
-                          style={{ marginLeft: "15px" }}
-                        >
-                          <div onClick={(e) => this.onClickDelete(e, todo.id)}>
-                            <DeleteIcon />
-                          </div>
-                        </IconButton>
+                            <div
+                              onClick={(e) => this.onClickCompleted(e, todo.id)}
+                            >
+                              <DoneAllIcon />
+                            </div>
+                          </IconButton>
+                        </Tooltip>
+
+                        <Tooltip title="Delete">
+                          <IconButton
+                            edge="end"
+                            aria-label="delete"
+                            style={{ marginLeft: "15px" }}
+                          >
+                            <div
+                              onClick={(e) => this.onClickDelete(e, todo.id)}
+                            >
+                              <DeleteIcon />
+                            </div>
+                          </IconButton>
+                        </Tooltip>
                       </ListItemSecondaryAction>
                     </ListItem>
                   </List>
