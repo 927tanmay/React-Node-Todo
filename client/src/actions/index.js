@@ -7,6 +7,7 @@ import {
   EDIT_TODO,
 } from "./ActionType";
 var api = "http://localhost:8080";
+
 export const getTodos = () => {
   return (dispatch) => {
     axios.get(api + "/all").then(
@@ -34,7 +35,7 @@ export const createTodo = (data) => {
   return (dispatch) => {
     axios
       .post(
-        api + "/todos/new",
+        api + "/add",
         { title: data },
         { headers: { "Content-Type": "application/json" } }
       )
